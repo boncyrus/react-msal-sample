@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { azureAdConfig } from "./config";
+import { BrowserRouter as Router } from 'react-router-dom';
+
+export const msalInstance = new PublicClientApplication(azureAdConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App pca={msalInstance} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
